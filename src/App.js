@@ -1,8 +1,9 @@
 import React from 'react';
 import {Switch, BrowserRouter as Router, Route} from 'react-router-dom'
-import {Shop} from './components/Shop'
+import Shop from './components/Shop'
 import {Cart} from './components/Cart'
 import {Navbar} from './components/Navbar'
+
 
 
 
