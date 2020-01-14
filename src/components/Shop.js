@@ -16,7 +16,6 @@ const Shop = ({addToCart, items}) =>  {
                         <div className="card">
                             <div className="card-image">
                                 <img src={item.img} alt={item.desc}/>
-                                    <span className="card-title">{item.title}</span>
                                     <button className="btn-floating halfway-fab waves-effect waves-light deep-purple accent-2 flex"
                                        onClick={() => handleClick(item.id)}>
                                         +
@@ -25,6 +24,7 @@ const Shop = ({addToCart, items}) =>  {
 
                             </div>
                             <div className="card-content">
+                                <span className="card-title">{item.title}</span>
                                 <p>{item.desc}</p>
                                 <span className="card-price">{item.price}$</span>
 
