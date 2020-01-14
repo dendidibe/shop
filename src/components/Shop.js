@@ -1,47 +1,48 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {connect} from "react-redux";
+import M from "materialize-css";
 import {addToCart} from "./actions/actions";
 
-class Shop extends Component {
-    handleClick = (id) => {
-        console.log(this.props.addedItems, this.props.total)
-        this.props.addToCart(id)
+const Shop = ({addToCart, items}) =>  {
+   const handleClick = (id) => {
+        addToCart(id)
+       M.toast({html: 'Item added to cart'})
     }
-    render() {
 
-        let itemList = this.props.items.map(item => {
+        let itemList = items.map(item => {
 
             return (
-                <div className="row">
-                <div className="col s12 m7">
-                <div className="card" key={item.id}  onClick={id => this.handleClick(item.id)}>
-                    <div className="card-image">
-                        <img src={item.img}/>
-                            <span className="card-title">{item.title}</span>
-                    </div>
-                    <div className="card-content">
-                        <p>{item.desc}</p>
-                    </div>
-                    <div className="card-action">
-                        <a href="#">{item.price}</a>
-                    </div>
-                </div>
+                    <div className="col s12 m6 l4" key={item.id}>
+                        <div className="card">
+                            <div className="card-image">
+                                <img src={item.img} alt={item.desc}/>
+                                    <span className="card-title">{item.title}</span>
+                                    <button className="btn-floating halfway-fab waves-effect waves-light deep-purple accent-2 flex"
+                                       onClick={() => handleClick(item.id)}>
+                                        +
+                                    </button>
 
-                </div>
 
+                            </div>
+                            <div className="card-content">
+                                <p>{item.desc}</p>
+                                <span className="card-price">{item.price}$</span>
+
+                            </div>
+                        </div>
                 </div>
-            )
-        })
+        )})
 
         return (
             <div className="container">
                 <h3 className="center">Our items</h3>
-                <div className="box">
-                    {itemList}
+                <div className="row">
+                    <div className="col s12">
+                        {itemList}
+                    </div>
                 </div>
             </div>
         );
-    }
 }
 const mapStateToProps = (state) => {
     return {items: state.items, addedItems: state.addedItems, total: state.total}

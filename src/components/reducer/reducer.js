@@ -22,32 +22,58 @@ const initialState = {
 
 
 export const reducer = ( state = initialState, {type, payload}) => {
+    let addedItem = state.items.find(item => item.id === payload)
+    let removingItem = state.addedItems.find(item => payload === item.id)
+
     switch (type) {
 
         case ADD_TO_CART:
-            let addingItem = state.items.find(item => item.id === payload)
             let existedItem = state.addedItems.find(item => payload ===item.id)
             if(existedItem) {
-                addingItem.quantity += 1;
+                addedItem.quantity += 1;
                 return {
                     ...state,
-                    total: state.total + addingItem.price
+                    total: state.total + addedItem.price
                 }
                 } else {
-                addingItem.quantity = 1;
+                addedItem.quantity = 1;
                 return {
                         ...state,
-                        addedItems: [...state.addedItems, addingItem],
-                        total: state.total + addingItem.price
+                        addedItems: [...state.addedItems, addedItem],
+                        total: state.total + addedItem.price
                     }
                 }
         case REMOVE_FROM_CART:
-            let removingItem = state.addedItems.find(item => payload === item.id)
-            let newItems = state.addedItems.filter(item => removingItem !== item.id)
+            let newItems = state.addedItems.filter(item => payload !== item.id)
+            let total = state.total ? state.total - (removingItem.price * removingItem.quantity) : 0
             return {
                 ...state,
-                items: newItems,
-                total: state.total - (removingItem.price * removingItem.quantity)
+                addedItems: newItems,
+                total
+            }
+        case ADD_QUANTITY:
+            addedItem.quantity += 1
+            let newTotal = state.total + addedItem.price
+            return {
+                ...state,
+                total: newTotal
+            }
+        case SUB_QUANTITY:
+            let minucedTotal = state.total - addedItem.price
+
+            if (addedItem.quantity === 1) {
+                let newItems = state.addedItems.filter(item => payload !== item.id)
+                return {
+                    ...state,
+                    total: minucedTotal,
+                    addedItems: newItems
+                }
+            } else {
+                addedItem.quantity -= 1
+                return {
+                    ...state,
+                    total: minucedTotal
+                }
             }
         default:
             return state;
