@@ -20,7 +20,7 @@ const CartItem = ({ item, addQuantity, subQuantity, removeFromCart }) => {
   };
 
   return (
-    <div className="col s12 m6 l4" >
+    <div className="col s6 l4" >
       <div className="card">
         <div className="card-image height-200">
           <button

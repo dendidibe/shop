@@ -10,7 +10,7 @@ const ShopItem = ({ item, addToCart }) => {
   };
 
   return (
-    <div className="col s12 m6 l4" >
+    <div className="col s6 l4" >
       <div className="card">
         <div className="card-image height-200">
           <img src={item.img} alt={item.desc} />
