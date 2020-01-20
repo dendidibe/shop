@@ -4,12 +4,12 @@ import {
   ADD_TO_CART,
   REMOVE_FROM_CART
 } from "../actions/actionTypes/actionTypes";
-import Item1 from "../../images/item1.jpg";
-import Item2 from "../../images/item2.jpg";
-import Item3 from "../../images/item3.jpg";
+import Item1 from "../../images/item1.jpeg";
+import Item2 from "../../images/item2.jpeg";
+import Item3 from "../../images/item3.jpeg";
 import Item4 from "../../images/item4.jpg";
-import Item5 from "../../images/item5.jpg";
-import Item6 from "../../images/item6.jpg";
+import Item5 from "../../images/item5.jpeg";
+import Item6 from "../../images/item6.jpeg";
 
 const initialState = {
   items: [
