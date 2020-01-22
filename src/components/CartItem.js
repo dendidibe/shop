@@ -8,7 +8,6 @@ const CartItem = ({ item, addQuantity, subQuantity, removeFromCart }) => {
   const handleAddQuantity = id => {
     addQuantity(id);
     M.toast({ html: "Quantity added" });
-    console.log(item)
   };
   const handleSubQuantity = id => {
     subQuantity(id);
@@ -20,43 +19,27 @@ const CartItem = ({ item, addQuantity, subQuantity, removeFromCart }) => {
   };
 
   return (
-    <div className="col s6 l4" >
-      <div className="card">
-        <div className="card-image height-200">
-          <button
-            className="example_a remove"
-            onClick={() => removeHandler(item.id)}
-          >
-            X
-          </button>
-          <img src={item.img} alt={item.desc} />
-        </div>
-        <div className="card-content">
-          <div className="item-desc">
-            <span className="card-title">{item.title}</span>
-            <span className="item-quantity">{item.quantity}</span>
+      <div className="col m6 l4" >
+        <div className="shop-card">
+            <button className="btn remove-btn" onClick={() => removeHandler(item.id)}>Remove</button>
+          <div className="title">
+            {item.title}
           </div>
-          <div className="button-controls">
-            <span className="item-price">{item.price} $</span>
-            <div>
-            <button
-              className="deep-purple accent-3 quantity-button"
-              onClick={() => handleAddQuantity(item.id)}
-            >
-              +
-            </button>
-            <button
-              className="deep-purple accent-3 quantity-button"
-              onClick={() => handleSubQuantity(item.id)}
-            >
-              -
-            </button>
+          <div className="desc">
+          </div>
+          <figure>
+            <img src={item.img} alt={item.title} className="card-image"/>
 
+          </figure>
+          <div className="cta">
+            <div className="price">Items: {item.quantity}</div>
+            <div className="button-controls">
+              <button className="btn" onClick={() => handleSubQuantity(item.id)}>-</button>
+              <button className="btn" onClick={() => handleAddQuantity(item.id)}>+</button>
             </div>
           </div>
         </div>
       </div>
-    </div>
   );
 };
 

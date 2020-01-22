@@ -7,7 +7,7 @@ import {
 import Item1 from "../../images/item1.jpeg";
 import Item2 from "../../images/item2.jpeg";
 import Item3 from "../../images/item3.jpeg";
-import Item4 from "../../images/item4.jpg";
+import Item4 from "../../images/item4.jpeg";
 import Item5 from "../../images/item5.jpeg";
 import Item6 from "../../images/item6.jpeg";
 
@@ -98,7 +98,7 @@ export const reducer = (state = initialState, { type, payload }) => {
         total
       };
     case ADD_QUANTITY:
-      addedItem.quantity += 1;
+      removingItem.quantity += 1;
       let newTotal = state.total + addedItem.price;
       return {
         ...state,

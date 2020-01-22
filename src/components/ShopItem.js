@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import M from "materialize-css";
 import { addToCart } from "./actions/actions";
+import '../ShopItem.css'
 
 const ShopItem = ({ item, addToCart }) => {
   const handleClick = id => {
@@ -10,25 +11,29 @@ const ShopItem = ({ item, addToCart }) => {
   };
 
   return (
-    <div className="col s6 l4" >
-      <div className="card">
-        <div className="card-image height-200">
-          <img src={item.img} alt={item.desc} />
-          <button
-            className="btn-floating halfway-fab waves-effect waves-light deep-purple accent-2 flex"
-            onClick={() => handleClick(item.id)}
-          >
-            +
-          </button>
+      <div className="col m6 l4" >
+        <div className="shop-card">
+          <div className="title">
+            {item.title}
+          </div>
+          <div className="desc">
+          </div>
+          <figure>
+          <img src={item.img} alt={item.title} className="card-image"/>
+
+          </figure>
+          <div className="cta">
+            <div className="price">${item.price}</div>
+            <button className="btn" onClick={() => handleClick(item.id)}>
+              Add to cart
+            </button>
+          </div>
         </div>
-        <div className="card-content">
-          <span className="card-title">{item.title}</span>
-          <p>{item.desc}</p>
-          <span className="card-price">{item.price}$</span>
-        </div>
+
+
       </div>
-    </div>
-  );
+
+);
 };
 const mapStateToProps = state => {
   return {
