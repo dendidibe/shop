@@ -1,9 +1,11 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import ShopItem from "./ShopItem";
 
-const Shop = ({ items }) => {
-  let itemList = items.map(item => {
+const Shop = () => {
+  const items = useSelector((state) => state.items);
+
+  let itemList = items.map((item) => {
     return <ShopItem item={item} key={item.id} />;
   });
 
@@ -17,9 +19,4 @@ const Shop = ({ items }) => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    items: state.items
-  };
-};
-export default connect(mapStateToProps)(Shop);
+export default Shop;

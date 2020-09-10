@@ -1,25 +1,21 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import CartItem from "./CartItem";
 
-const Cart = ({ addedItems, total }) => {
-
-  const addedItemList = addedItems.map(item => {
-    return <CartItem item={item} key={item.id}/>;
-  });
+const Cart = () => {
+  const addedItems = useSelector((state) => state.addedItems);
+  const total = useSelector((state) => state.total);
 
   return (
     <div className="container">
       <h3 className="center">Total: {total} $</h3>
-      <div className="row">{addedItemList}</div>
+      <div className="row">
+        {addedItems.map((item, i) => (
+          <CartItem item={item} key={i} />
+        ))}
+      </div>
     </div>
   );
 };
-const mapStateToProps = state => {
-  return {
-    addedItems: state.addedItems,
-    total: state.total
-  };
-};
 
-export default connect(mapStateToProps)(Cart);
+export default Cart;
